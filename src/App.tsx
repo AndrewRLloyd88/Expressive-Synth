@@ -15,7 +15,9 @@ function App({}: AppProps) {
   //every time a button is pressed pass in the keys value and play that note
   const handleClick = (id: string) => {
     //triggers a note and an attack release time.
-    synth.triggerAttack(`${id}`, '8n', now);
+    Tone.context.resume().then(() => {
+      synth.triggerAttack(`${id}`, '8n', now);
+    });
   };
 
   const release = (id: string) => {
