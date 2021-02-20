@@ -10,12 +10,16 @@ function App({}: AppProps) {
   const keyboard = new Keyboard();
 
   // patch
-  const synth = new Tone.PolySynth().toDestination();
-
+  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  const now = Tone.now();
   //every time a button is pressed pass in the keys value and play that note
   const handleClick = (id: string) => {
     //triggers a note and an attack release time.
-    synth.triggerAttackRelease(`${id}`, '8n');
+    synth.triggerAttack(`${id}`, '8n', now);
+  };
+
+  const release = (id: string) => {
+    synth.triggerRelease(`${id}`, now);
   };
 
   //map out our keyboard with the appropriate keys
@@ -27,8 +31,14 @@ function App({}: AppProps) {
           return (
             <button
               key={id}
-              onClick={() => {
+              onMouseDown={() => {
                 handleClick(key);
+              }}
+              onMouseUp={() => {
+                release(key);
+              }}
+              onMouseLeave={() => {
+                release(key);
               }}
             >
               <p>{key}</p>
