@@ -10,13 +10,26 @@ function App({}: AppProps) {
   const keyboard = new Keyboard();
 
   // patch
-  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  const synth = new Tone.PolySynth(Tone.Synth, {
+    oscillator: {
+      type: 'triangle21',
+    },
+    envelope: {
+      attack: 5,
+      decay: 1,
+      sustain: 0.4,
+      release: 4,
+    },
+  }).toDestination();
+
   const now = Tone.now();
+
   //every time a button is pressed pass in the keys value and play that note
   const handleClick = (id: string) => {
     //triggers a note and an attack release time.
     Tone.context.resume().then(() => {
-      synth.triggerAttack(`${id}`, '8n', now);
+      console.log(synth);
+      synth.triggerAttack(`${id}`, now);
     });
   };
 
