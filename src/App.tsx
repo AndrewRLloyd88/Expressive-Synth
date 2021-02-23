@@ -46,6 +46,7 @@ function App({}: AppProps) {
           return (
             <button
               key={id}
+              className={key}
               onMouseDown={() => {
                 handleClick(key);
               }}

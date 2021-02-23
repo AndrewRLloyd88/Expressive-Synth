@@ -1,8 +1,21 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
-.keyboard {
+/* .keyboard {
   display: flex;
   flex-wrap: wrap;
+} */
+
+button {
+  background-color: #fff;
+  height: 150px;
+  z-index: -1;
+}
+
+button[class*='#'] {
+  background-color: black;
+  color: white;
+  height: 100px;
+  z-index: 4;
 }
