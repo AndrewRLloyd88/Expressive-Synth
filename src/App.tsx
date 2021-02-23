@@ -56,9 +56,7 @@ function App({}: AppProps) {
               onMouseLeave={() => {
                 release(key);
               }}
-            >
-              <p>{key}</p>
-            </button>
+            ></button>
           );
         })}
       </div>

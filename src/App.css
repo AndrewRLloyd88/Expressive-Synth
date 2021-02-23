@@ -2,20 +2,27 @@
   /* text-align: center; */
 }
 
-/* .keyboard {
+.keyboard {
   display: flex;
-  flex-wrap: wrap;
-} */
+  width: 90%;
+  margin: 0 auto;
+  /* flex-wrap: wrap; */
+}
 
 button {
   background-color: #fff;
   height: 150px;
-  z-index: -1;
+  z-index: 0;
+  width: 3em;
+  position: relative;
+  margin: 0 0 0 -8px;
 }
 
 button[class*='#'] {
   background-color: black;
   color: white;
-  height: 100px;
+  height: 75px;
   z-index: 4;
+  width: 1em;
+  margin: 0 0 0 -1em;
 }
