@@ -29,7 +29,8 @@ function App({}: AppProps) {
     },
   }).toDestination();
 
-  const now = Tone.now();
+  const now = Infinity;
+  console.log(now);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.id);
@@ -52,6 +53,10 @@ function App({}: AppProps) {
   const release = (id: string) => {
     synth.triggerRelease(`${id}`);
   };
+
+  useEffect(() => {
+    setCurrentSynthSettings(currentSynthSettings);
+  }, []);
 
   //map out our keyboard with the appropriate keys
   return (
