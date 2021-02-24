@@ -1,12 +1,12 @@
-.App {
-  text-align: center;
+body {
+  width: 90vw;
+  margin: 0 auto;
 }
 
 .keyboard {
   display: flex;
   width: 90%;
   margin: 0 auto;
-  /* flex-wrap: wrap; */
 }
 
 button {
@@ -25,4 +25,17 @@ button[class*='#'] {
   z-index: 4;
   width: 1em;
   margin: 0 0 0 -1em;
+}
+
+.control-panel {
+  display: flex;
+  padding: 20px;
+}
+
+.control-panel p {
+  margin: 5px;
+}
+
+input[type='range' i] {
+  width: 50vw;
 }

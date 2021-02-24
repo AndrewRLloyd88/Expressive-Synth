@@ -29,15 +29,26 @@ function App({}: AppProps) {
     },
   }).toDestination();
 
+  //allows notes to be played as long as they are held
   const now = Infinity;
-  console.log(now);
 
+  //changes parameters by the id name that comes in
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.id);
-    console.log(event.target.value);
-    const newAttack = parseInt(event.target.value);
+    const proptomodify = event.target.id;
+    const newVal = parseFloat(event.target.value);
     setCurrentSynthSettings((prevState) => {
-      return { ...prevState, attack: newAttack };
+      return { ...prevState, [`${proptomodify}`]: newVal };
+    });
+  };
+
+  //resets the synth back to the default values
+  const reset = () => {
+    setCurrentSynthSettings({
+      type: 'triangle21',
+      attack: 5,
+      decay: 5,
+      sustain: 0.4,
+      release: 4,
     });
   };
 
@@ -81,20 +92,76 @@ function App({}: AppProps) {
           );
         })}
       </div>
-      <div>
-        <label htmlFor="Attack">
-          Attack {currentSynthSettings.attack}
-          <input
-            min={0}
-            type="range"
-            id={'attack'}
-            onChange={(event) => {
-              handleChange(event);
-              console.log(currentSynthSettings.attack);
-            }}
-            value={currentSynthSettings.attack}
-          ></input>
-        </label>
+      <div className="control-panel">
+        <div className="sliders">
+          <div>
+            <label htmlFor="Attack">
+              <p>Attack {currentSynthSettings.attack}</p>
+              <input
+                min={0 as number}
+                type="range"
+                id={'attack'}
+                onChange={(event) => {
+                  handleChange(event);
+                  console.log(currentSynthSettings.attack);
+                }}
+                value={currentSynthSettings.attack}
+              ></input>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="Decay">
+              <p>Decay {currentSynthSettings.decay}</p>
+              <input
+                min={0 as number}
+                type="range"
+                id={'decay'}
+                onChange={(event) => {
+                  handleChange(event);
+                  console.log(currentSynthSettings.decay);
+                }}
+                value={currentSynthSettings.decay}
+              ></input>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="Sustain">
+              <p>Sustain {currentSynthSettings.sustain}</p>
+              <input
+                min={0 as number}
+                max={1.0 as number}
+                step={0.1 as number}
+                type="range"
+                id={'sustain'}
+                onChange={(event) => {
+                  handleChange(event);
+                  console.log(currentSynthSettings.sustain);
+                }}
+                value={currentSynthSettings.sustain}
+              ></input>
+            </label>
+          </div>
+          <div>
+            <label htmlFor="Release">
+              <p>Release {currentSynthSettings.release}</p>
+              <input
+                min={0 as number}
+                type="range"
+                id={'release'}
+                onChange={(event) => {
+                  handleChange(event);
+                  console.log(currentSynthSettings.release);
+                }}
+                value={currentSynthSettings.release}
+              ></input>
+            </label>
+          </div>
+        </div>
+        <div className="buttons">
+          <div>
+            <button onClick={reset}>Reset</button>
+          </div>
+        </div>
       </div>
     </div>
   );
