@@ -39,3 +39,15 @@ button[class*='#'] {
 input[type='range' i] {
   width: 50vw;
 }
+
+.buttons {
+  padding: 20px;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons button {
+  width: 100px;
+  height: 40px;
+}

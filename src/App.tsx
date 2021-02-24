@@ -159,7 +159,7 @@ function App({}: AppProps) {
         </div>
         <div className="buttons">
           <div>
-            <button onClick={reset}>Reset</button>
+            <button onClick={reset}>Reset ADSR</button>
           </div>
         </div>
       </div>
