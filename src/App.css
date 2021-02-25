@@ -42,7 +42,7 @@ input[type='range' i] {
 
 .buttons {
   padding: 20px;
-  width: 30vw;
+  /* width: 30vw; */
   display: flex;
   flex-direction: column;
 }
@@ -50,4 +50,18 @@ input[type='range' i] {
 .buttons button {
   width: 100px;
   height: 40px;
+}
+
+.patch-options {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.patch-options label {
+  display: flex;
+}
+
+.osc-selector {
+  width: 50%;
 }

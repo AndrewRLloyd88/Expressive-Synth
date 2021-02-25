@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Keyboard } from './Keyboard';
+
+//import ToneJS
 import * as Tone from 'tone';
 
-interface AppProps {}
+//import classes
+import { Patches } from './Patches';
+import { Keyboard } from './Keyboard';
 
-function App({}: AppProps) {
+//Main Function
+function App() {
+  //Setup React States
   const [currentSynthSettings, setCurrentSynthSettings] = useState({
     type: 'triangle21',
     attack: 5,
@@ -13,10 +18,13 @@ function App({}: AppProps) {
     sustain: 0.4,
     release: 4,
   });
-  //define new keyboard from class Keyboard
-  const keyboard = new Keyboard();
+  const [bank, setBank] = useState('triangle');
 
-  // patch
+  //instantiate classes
+  const keyboard = new Keyboard();
+  const patches = new Patches();
+
+  // set up initial patch
   const synth = new Tone.PolySynth(Tone.Synth, {
     oscillator: {
       type: currentSynthSettings.type as 'custom',
@@ -63,6 +71,11 @@ function App({}: AppProps) {
 
   const release = (id: string) => {
     synth.triggerRelease(`${id}`);
+  };
+
+  const changeBank = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.id);
+    setBank(event.target.id);
   };
 
   useEffect(() => {
@@ -161,6 +174,34 @@ function App({}: AppProps) {
           <div>
             <button onClick={reset}>Reset ADSR</button>
           </div>
+        </div>
+        <div className="patch-selector">
+          <div className="patch-options">
+            {Object.getOwnPropertyNames(patches).map((patch, id) => {
+              return (
+                <label key={`${patch}`}>
+                  {patch}
+                  <input
+                    key={id}
+                    name="patchGroup"
+                    type="radio"
+                    defaultChecked={bank === patch}
+                    id={patch}
+                    onChange={(event) => {
+                      changeBank(event);
+                    }}
+                  ></input>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+        <div className="osc-selector">
+          <select name="voices" id="voices">
+            {patches[bank as keyof Patches].map((voice: string) => {
+              return <option value={voice}>{voice}</option>;
+            })}
+          </select>
         </div>
       </div>
     </div>
