@@ -90,6 +90,11 @@ h2 {
 .splash-btn {
   width: 20vw;
   height: 20vh;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-weight: bold;
+}
+
+.splash-btn:hover {
+  background-color: black;
+  color: white;
 }
