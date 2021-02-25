@@ -22,7 +22,7 @@ const Music = (props: Props) => {
         Created by <a href="https://arlmedia.ca/">Andrew Lloyd</a>
       </h2>
       <h3 className="splash-h3">
-        For
+        For{' '}
         <a href="https://mintbean.io/meets/f37792a1-a576-4de7-8e27-1c6a34e91da8?template=meet">
           Mintbean's JS MusicHacks: Web-Beats Hackathon!
         </a>
