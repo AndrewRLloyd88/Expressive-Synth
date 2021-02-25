@@ -58,6 +58,7 @@ function App() {
       sustain: 0.4,
       release: 4,
     });
+    setBank('triangle');
   };
 
   //every time a button is pressed pass in the keys value and play that note
@@ -73,9 +74,21 @@ function App() {
     synth.triggerRelease(`${id}`);
   };
 
+  //changes the bank of patches
   const changeBank = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.id);
+    console.log(event);
     setBank(event.target.id);
+    setCurrentSynthSettings((prevState) => {
+      return { ...prevState, type: event.target.id + '1' };
+    });
+  };
+
+  //changes voice in a bank
+  const changeVoice = (event: { target: { value: string } }) => {
+    console.log(event.target.value);
+    setCurrentSynthSettings((prevState) => {
+      return { ...prevState, type: event.target.value };
+    });
   };
 
   useEffect(() => {
@@ -185,7 +198,7 @@ function App() {
                     key={id}
                     name="patchGroup"
                     type="radio"
-                    defaultChecked={bank === patch}
+                    checked={bank === patch}
                     id={patch}
                     onChange={(event) => {
                       changeBank(event);
@@ -197,9 +210,20 @@ function App() {
           </div>
         </div>
         <div className="osc-selector">
-          <select name="voices" id="voices">
-            {patches[bank as keyof Patches].map((voice: string) => {
-              return <option value={voice}>{voice}</option>;
+          <div>
+            <label>Select a Patch Bank and Voice:</label>
+          </div>
+          <select name="voices" id="voices" onChange={changeVoice}>
+            {patches[bank as keyof Patches].map((voice: string, id) => {
+              return (
+                <option
+                  key={id}
+                  value={voice}
+                  selected={voice === currentSynthSettings.type}
+                >
+                  {voice}
+                </option>
+              );
             })}
           </select>
         </div>

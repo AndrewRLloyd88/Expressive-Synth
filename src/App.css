@@ -62,6 +62,10 @@ input[type='range' i] {
   display: flex;
 }
 
+.osc-selector label {
+  width: 100%;
+}
+
 .osc-selector {
   width: 50%;
 }
